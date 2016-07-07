@@ -51,11 +51,15 @@ var CommentForm = React.createClass({
 });
 
 var CommentBox = React.createClass({
+  getInitialState: function() {
+    return { data: [] }
+  },
+
   render: function() {
     return (
       <div className="commentBox">
       <h1>Comments</h1>
-      <CommentList data={ this.props.data } />
+      <CommentList data={ this.state.data } />
       <CommentForm />
       </div>
       );
@@ -63,7 +67,7 @@ var CommentBox = React.createClass({
 });
 
 ReactDOM.render(
-  <CommentBox data={ data }/>,
+  <CommentBox url="/api/comment" />,
   document.getElementById('content')
   );
 
