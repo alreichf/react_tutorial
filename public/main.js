@@ -4,23 +4,29 @@ var CommentList = React.createClass({
     return (
       <div className="commentList">
         <Comment author="Pete Hunt">This is one comment</Comment>
-        <Comment author="Jordan Michael"> This is another comment</Comment>
+        <Comment author="Jordan Michael"> This is *another* comment</Comment>
       </div>
       );
   }
 });
 
 var Comment = React.createClass({
-  render: function() {
-    return (
+    rawMarkup: function() {
+      var md = new Remarkable();
+      var rawMarkup = md.render(this.props.children.toString());
+      return { __html: rawMarkup };
+    },
+    
+    render: function() {
+      return (
       <div className="comment">
         <h2 className="commentAuthor">
           { this.props.author }
         </h2>
-        { this.props.children }
+        <span dangerouslySetInnerHTML={ this.rawMarkup() } />
       </div>
       );
-  }
+    }
 });
 
 var CommentForm = React.createClass({
