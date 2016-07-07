@@ -8,5 +8,10 @@
         "id": 2,
         "author": "Paul O’Shannessy",
         "text": "React is *great*!"
+    },
+    {
+        "id": 3,
+        "author": "Emanuel",
+        "text": "Learning ReactJS"
     }
 ]
